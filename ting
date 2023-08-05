@@ -1,0 +1,65 @@
+Set the following properties for your environment 
+CDS_HOME="/usr/local/cdshome" 
+CDS_DEPL_NAME="cds" 
+JAVA_HOME="/usr/j2se" 
+ 
+# Set the following parameters for CDSBillingSubscriber 
+clientID="CDSBillingSubscriberUniqueClientID" 
+subName="CDSBillingSubscriberUniqueSubscriptionName" 
+selector="null" 
+durable="false" 
+transactional="false" 
+ 
+# CDSBillingSubscriber Parameter Constants 
+connFactory="cds.messaging.billing.TopicConnectionFactory" 
+topicName="cds.messaging.billingTopic" 
+ 
+# Sun Java System Application Server Parameters 
+jndiCtxFactory="null" 
+providerURL="null" 
+ 
+# BEA WebLogic Parameters 
+# Set the providerURL and WL_HOME 
+# For providerURL use the 
+# WebLogic Application Server host and port 
+#jndiCtxFactory="weblogic.jndi.WLInitialContextFactory" 
+#providerURL="t3://jndihost.domain.com:80" 
+#WL_HOME="/usr/local/bea/weblogic700/server" 
+ 
+# You may select to filter the messages by event. 
+# See the javadoc for javax.jms.Message for more 
+# information on selectors.See the CDS Customization 
+# Guide for a list of possible events. 
+#selector="JMSCorrelationID=download_initiated" 
+ 
+# Directory Constants 
+DEPL_DIR="${CDS_HOME}/deployment/${CDS_DEPL_NAME}" 
+CONF_DIR="${DEPL_DIR}/conf" 
+LIB_DIR="${DEPL_DIR}/lib" 
+CDSLIB_DIR="${LIB_DIR}/cdslib" 
+ 
+# Sun Java System Application Server CLASSPATH Constant 
+COMPILE_LCP=".:${LIB_DIR}/jms.jar" 
+COMPILE_LCP="${COMPILE_LCP}:${CDSLIB_DIR}/cdsapi.jar" 
+COMPILE_LCP="${COMPILE_LCP}:${CDSLIB_DIR}/foundation.jar" 
+EXEC_LCP=".:${LIB_DIR}/jms.jar" 
+EXEC_LCP="${EXEC_LCP}:${CDSLIB_DIR}/cdsapi.jar" 
+EXEC_LCP="${EXEC_LCP}:${CDSLIB_DIR}/foundation.jar" 
+EXEC_LCP="${EXEC_LCP}:${CDSLIB_DIR}/eventserviceclient.jar" 
+EXEC_LCP="${EXEC_LCP}:${LIB_DIR}/imq.jar" 
+EXEC_LCP="${EXEC_LCP}:${LIB_DIR}/fscontext.jar" 
+ 
+# BEA WebLogic CLASSPATH Constant 
+#COMPILE_LCP=".:${LIB_DIR}/jms.jar" 
+#COMPILE_LCP="${COMPILE_LCP}:${CDSLIB_DIR}/cdsapi.jar" 
+#COMPILE_LCP="${COMPILE_LCP}:${CDSLIB_DIR}/foundation.jar" 
+#EXEC_LCP=".:${LIB_DIR}/jms.jar" 
+#EXEC_LCP="${EXEC_LCP}:${CDSLIB_DIR}/cdsapi.jar" 
+#EXEC_LCP="${EXEC_LCP}:${CDSLIB_DIR}/foundation.jar" 
+#EXEC_LCP="${EXEC_LCP}:${CDSLIB_DIR}/eventserviceclient.jar" 
+#EXEC_LCP="${EXEC_LCP}:${WL_HOME}/lib/weblogic.jar" 
+ 
+# Java Command Line Option Constants 
+CDS_OPTS="-Dcds.home=${CDS_HOME}" 
+CDS_OPTS="${CDS_OPTS} -Dcds.config.file=CDS.properties" 
+CDS_OPTS="${CDS_OPTS} -Dcds.config.dir=${CONF_DIR}" 
